@@ -1,0 +1,2531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>King Bright Car Dealership | Premium Vehicles</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Inter:wght@300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0c;
+            --bg-secondary: #0f0f12;
+            --bg-card: #141418;
+            --bg-elevated: #1a1a20;
+            --bg-hover: #1f1f26;
+            --gold: #c9a227;
+            --gold-light: #e0b84c;
+            --gold-dark: #a8881a;
+            --gold-glow: rgba(201, 162, 39, 0.35);
+            --text-primary: #ffffff;
+            --text-secondary: #b8b8b8;
+            --text-muted: #7a7a7a;
+            --border: #26262e;
+            --border-light: #33333c;
+            --accent-blue: #1e3a5f;
+            --accent-emerald: #0d3320;
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 22px;
+            --radius-xl: 32px;
+            --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+            --font-display: 'Bebas Neue', sans-serif;
+            --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.45);
+            --shadow-glow: 0 0 40px rgba(201, 162, 39, 0.15);
+            --shadow-elevated: 0 20px 60px rgba(0, 0, 0, 0.6);
+            --max-width: 1280px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            scrollbar-color: var(--gold-dark) var(--bg-primary);
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold-dark);
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gold);
+        }
+
+        ::selection {
+            background: var(--gold);
+            color: var(--bg-primary);
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+        button {
+            cursor: pointer;
+            border: none;
+            font-family: var(--font-body);
+            transition: var(--transition);
+        }
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ============ SCROLL PROGRESS ============ */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light));
+            z-index: 10000;
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        /* ============ HEADER / NAV ============ */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 9000;
+            background: rgba(10, 10, 12, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            transition: var(--transition);
+        }
+        .header.scrolled {
+            background: rgba(10, 10, 12, 0.92);
+            border-bottom-color: rgba(201, 162, 39, 0.25);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            height: 76px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            letter-spacing: 0.5px;
+            flex-shrink: 0;
+        }
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: var(--bg-primary);
+            font-weight: 800;
+            box-shadow: 0 0 25px var(--gold-glow);
+            flex-shrink: 0;
+        }
+        .logo-text {
+            line-height: 1.1;
+        }
+        .logo-text .king {
+            color: var(--gold);
+            font-weight: 800;
+        }
+        .logo-text .bright {
+            color: var(--text-primary);
+            font-weight: 400;
+        }
+        .logo-sub {
+            font-size: 0.55rem;
+            font-family: var(--font-body);
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            display: block;
+            margin-top: 2px;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .nav-link {
+            padding: 10px 16px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            border-radius: var(--radius-sm);
+            position: relative;
+            letter-spacing: 0.3px;
+            white-space: nowrap;
+            transition: var(--transition);
+        }
+        .nav-link:hover {
+            color: var(--gold);
+            background: rgba(201, 162, 39, 0.08);
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+        .nav-link:hover::after {
+            width: 60%;
+        }
+        .nav-link.active {
+            color: var(--gold);
+        }
+        .nav-link.active::after {
+            width: 60%;
+        }
+
+        .nav-link.dropdown-toggle {
+            position: relative;
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 8px 0;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: var(--transition);
+            box-shadow: var(--shadow-elevated);
+        }
+        .dropdown-menu.show {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translateX(-50%) translateY(4px);
+        }
+        .dropdown-menu a {
+            display: block;
+            padding: 10px 20px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            transition: var(--transition);
+        }
+        .dropdown-menu a:hover {
+            background: rgba(201, 162, 39, 0.08);
+            color: var(--gold);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+        .phone-link {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            transition: var(--transition);
+            padding: 8px 12px;
+        }
+        .phone-link:hover {
+            color: var(--gold);
+        }
+        .phone-link .icon {
+            font-size: 1rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            border-radius: 50px;
+            letter-spacing: 0.5px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold-light), var(--gold-dark));
+            color: var(--bg-primary);
+            box-shadow: 0 4px 20px var(--gold-glow);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(201, 162, 39, 0.45);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-light);
+        }
+        .btn-outline:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            background: rgba(201, 162, 39, 0.06);
+        }
+        .btn-sm {
+            padding: 9px 18px;
+            font-size: 0.75rem;
+        }
+        .btn-lg {
+            padding: 16px 32px;
+            font-size: 0.95rem;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            padding: 8px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+        }
+        .hamburger span {
+            width: 22px;
+            height: 2px;
+            background: var(--text-primary);
+            border-radius: 2px;
+            transition: var(--transition);
+            transform-origin: center;
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 76px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(10, 10, 12, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 8999;
+            padding: 24px;
+            overflow-y: auto;
+            transform: translateY(-100%);
+            transition: var(--transition-slow);
+        }
+        .mobile-menu.open {
+            transform: translateY(0);
+        }
+        .mobile-menu a {
+            display: block;
+            padding: 16px 0;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border);
+            transition: var(--transition);
+        }
+        .mobile-menu a:hover {
+            color: var(--gold);
+            padding-left: 12px;
+        }
+
+        /* ============ HERO SECTION ============ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: var(--bg-primary);
+            overflow: hidden;
+            padding-top: 76px;
+        }
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 30% 20%, rgba(201, 162, 39, 0.12) 0%, transparent 55%),
+                radial-gradient(ellipse at 70% 80%, rgba(30, 58, 95, 0.25) 0%, transparent 50%),
+                radial-gradient(ellipse at 85% 15%, rgba(201, 162, 39, 0.06) 0%, transparent 40%),
+                linear-gradient(180deg, #0a0a0c 0%, #0c0c10 40%, #0a0a0c 100%);
+        }
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+            -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+        }
+        .hero-glow {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(201, 162, 39, 0.12) 0%, transparent 70%);
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: pulseGlow 4s ease-in-out infinite;
+            z-index: 0;
+        }
+        @keyframes pulseGlow {
+            0%,
+            100% {
+                transform: translateX(-50%) scale(1);
+                opacity: 0.7;
+            }
+            50% {
+                transform: translateX(-50%) scale(1.15);
+                opacity: 1;
+            }
+        }
+        .hero-floating-car {
+            position: absolute;
+            font-size: 8rem;
+            opacity: 0.06;
+            right: 5%;
+            bottom: 10%;
+            z-index: 0;
+            animation: floatCar 6s ease-in-out infinite;
+            pointer-events: none;
+        }
+        @keyframes floatCar {
+            0%,
+            100% {
+                transform: translateY(0) rotate(-3deg);
+            }
+            50% {
+                transform: translateY(-25px) rotate(3deg);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            text-align: center;
+            padding: 60px 0 80px;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(201, 162, 39, 0.15);
+            border: 1px solid rgba(201, 162, 39, 0.35);
+            border-radius: 50px;
+            padding: 8px 20px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 28px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+        .hero-badge .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--gold);
+            animation: blinkDot 1.2s ease-in-out infinite;
+        }
+        @keyframes blinkDot {
+            0%,
+            100% {
+                opacity: 1;
+                box-shadow: 0 0 0 0 rgba(201, 162, 39, 0.5);
+            }
+            50% {
+                opacity: 0.5;
+                box-shadow: 0 0 0 6px rgba(201, 162, 39, 0);
+            }
+        }
+
+        .hero-title {
+            font-family: var(--font-heading);
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-weight: 800;
+            line-height: 1.08;
+            margin-bottom: 16px;
+            animation: fadeInUp 0.9s ease-out 0.15s both;
+        }
+        .hero-title .highlight {
+            background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            display: inline-block;
+        }
+        .hero-title .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            border-radius: 3px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 620px;
+            margin: 0 auto 36px;
+            font-weight: 300;
+            letter-spacing: 0.3px;
+            animation: fadeInUp 0.9s ease-out 0.3s both;
+        }
+        .hero-subtitle strong {
+            color: var(--gold-light);
+            font-weight: 600;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Hero Search */
+        .hero-search {
+            max-width: 780px;
+            margin: 0 auto 28px;
+            animation: fadeInUp 0.9s ease-out 0.45s both;
+        }
+        .search-box {
+            background: rgba(20, 20, 24, 0.85);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 24px 28px;
+            box-shadow: var(--shadow-elevated);
+            transition: var(--transition);
+        }
+        .search-box:hover {
+            border-color: rgba(201, 162, 39, 0.3);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.7), var(--shadow-glow);
+        }
+        .search-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .search-field {
+            position: relative;
+        }
+        .search-field label {
+            display: block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+        .search-field select,
+        .search-field input {
+            width: 100%;
+            padding: 12px 14px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            color: var(--text-primary);
+            font-size: 0.88rem;
+            font-family: var(--font-body);
+            outline: none;
+            transition: var(--transition);
+            appearance: none;
+            -webkit-appearance: none;
+            cursor: pointer;
+        }
+        .search-field select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23c9a227' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            padding-right: 36px;
+        }
+        .search-field select:focus,
+        .search-field input:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.12);
+        }
+        .search-field select option {
+            background: var(--bg-elevated);
+            color: var(--text-primary);
+        }
+        .search-submit {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold-dark));
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: var(--bg-primary);
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+        .search-submit:hover {
+            box-shadow: 0 8px 25px rgba(201, 162, 39, 0.4);
+            transform: translateY(-1px);
+        }
+        .search-count {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+        .search-count strong {
+            color: var(--gold-light);
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        .search-count .live-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #22c55e;
+            margin-right: 4px;
+            animation: blinkDot 1.5s ease-in-out infinite;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.9s ease-out 0.55s both;
+        }
+
+        .hero-trustpilot {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 24px;
+            animation: fadeInUp 0.9s ease-out 0.65s both;
+        }
+        .trustpilot-badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(20, 20, 24, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            padding: 10px 20px;
+        }
+        .trustpilot-stars {
+            color: var(--gold);
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+        }
+        .trustpilot-stars .star-empty {
+            color: var(--text-muted);
+        }
+        .trustpilot-text {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+        .trustpilot-text strong {
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-muted);
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: fadeInUp 1s ease-out 0.8s both;
+        }
+        .scroll-indicator .mouse {
+            width: 22px;
+            height: 36px;
+            border: 2px solid var(--text-muted);
+            border-radius: 12px;
+            position: relative;
+        }
+        .scroll-indicator .mouse::after {
+            content: '';
+            position: absolute;
+            top: 6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 2px;
+            animation: scrollWheel 1.8s ease-in-out infinite;
+        }
+        @keyframes scrollWheel {
+            0%,
+            100% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                opacity: 0.3;
+                transform: translateX(-50%) translateY(8px);
+            }
+        }
+
+        /* ============ SECTION SHARED ============ */
+        .section {
+            padding: 80px 0;
+            position: relative;
+        }
+        .section-alt {
+            background: var(--bg-secondary);
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        .section-tag {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 12px;
+        }
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 12px;
+        }
+        .section-subtitle {
+            font-size: 1rem;
+            color: var(--text-muted);
+            max-width: 560px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* ============ REVEAL ANIMATIONS ============ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 {
+            transition-delay: 0.1s;
+        }
+        .reveal-delay-2 {
+            transition-delay: 0.2s;
+        }
+        .reveal-delay-3 {
+            transition-delay: 0.3s;
+        }
+        .reveal-delay-4 {
+            transition-delay: 0.4s;
+        }
+
+        /* ============ DEAL DROP / SPECIAL COLLECTIONS ============ */
+        .deal-section {
+            background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .deal-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(201, 162, 39, 0.3), transparent);
+        }
+        .deal-scroll-container {
+            position: relative;
+            overflow: hidden;
+            margin: 0 -24px;
+            padding: 0 24px;
+        }
+        .deal-scroll {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding: 20px 0 28px;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .deal-scroll::-webkit-scrollbar {
+            display: none;
+        }
+        .deal-card {
+            flex: 0 0 320px;
+            scroll-snap-align: start;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: var(--transition);
+            position: relative;
+            cursor: pointer;
+        }
+        .deal-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(201, 162, 39, 0.4);
+            box-shadow: var(--shadow-card), var(--shadow-glow);
+        }
+        .deal-card-image {
+            height: 200px;
+            background: #1a1a22;
+            position: relative;
+            overflow: hidden;
+        }
+        .deal-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        .deal-card:hover .deal-card-image img {
+            transform: scale(1.05);
+        }
+        .deal-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: linear-gradient(135deg, #dc2626, #991b1b);
+            color: #fff;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.35);
+            z-index: 2;
+        }
+        .deal-badge.gold {
+            background: linear-gradient(135deg, var(--gold-light), var(--gold-dark));
+            color: var(--bg-primary);
+        }
+        .deal-card-body {
+            padding: 20px;
+        }
+        .deal-card-title {
+            font-family: var(--font-heading);
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .deal-card-price {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .price-now {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--gold-light);
+        }
+        .price-was {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-decoration: line-through;
+        }
+        .deal-card-specs {
+            display: flex;
+            gap: 16px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+        }
+        .deal-card-specs span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .deal-countdown {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        .countdown-item {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 6px 10px;
+            text-align: center;
+            min-width: 44px;
+        }
+        .countdown-item .num {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            color: var(--gold-light);
+            line-height: 1;
+        }
+        .countdown-item .label {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
+
+        .deal-nav {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 8px;
+        }
+        .deal-nav-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        .deal-nav-btn:hover {
+            background: var(--gold);
+            color: var(--bg-primary);
+            border-color: var(--gold);
+            box-shadow: 0 4px 15px var(--gold-glow);
+        }
+
+        /* ============ WHAT'S NEW / CAR GRID ============ */
+        .car-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .car-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+        }
+        .car-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(201, 162, 39, 0.35);
+            box-shadow: var(--shadow-card), var(--shadow-glow);
+        }
+        .car-card-image {
+            height: 200px;
+            background: #1a1a22;
+            position: relative;
+            overflow: hidden;
+        }
+        .car-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        .car-card:hover .car-card-image img {
+            transform: scale(1.05);
+        }
+        .car-tag {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            border-radius: 50px;
+            color: var(--gold-light);
+            z-index: 2;
+        }
+        .car-card-body {
+            padding: 20px;
+        }
+        .car-card-name {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .car-card-specs {
+            display: flex;
+            gap: 14px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+        .car-card-specs span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .car-card-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid var(--border);
+            padding-top: 14px;
+        }
+        .car-card-price {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--gold-light);
+        }
+        .car-card-btn {
+            padding: 8px 16px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            border-radius: 50px;
+            background: transparent;
+            border: 1px solid var(--border-light);
+            color: var(--text-secondary);
+            transition: var(--transition);
+            letter-spacing: 0.5px;
+        }
+        .car-card:hover .car-card-btn {
+            background: var(--gold);
+            color: var(--bg-primary);
+            border-color: var(--gold);
+            box-shadow: 0 4px 15px var(--gold-glow);
+        }
+
+        /* ============ ABOUT SECTION ============ */
+        .about-section {
+            background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .about-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(201, 162, 39, 0.25), transparent);
+        }
+        .about-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .about-image {
+            background: linear-gradient(135deg, #1a1a22 0%, #0f0f14 100%);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--border);
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .about-image img {
+            max-width: 100%;
+            max-height: 250px;
+            object-fit: contain;
+            filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.5));
+            transition: var(--transition);
+            opacity: 0.8;
+        }
+        .about-image:hover img {
+            transform: scale(1.03);
+            opacity: 1;
+        }
+        .about-image .glow-orb {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(201, 162, 39, 0.2) 0%, transparent 70%);
+            top: 20%;
+            left: 30%;
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+        .about-text h3 {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        .about-text h3 .gold {
+            color: var(--gold);
+        }
+        .about-text p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-top: 28px;
+        }
+        .stat-item {
+            text-align: center;
+            padding: 16px 8px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            transition: var(--transition);
+        }
+        .stat-item:hover {
+            border-color: rgba(201, 162, 39, 0.35);
+            box-shadow: var(--shadow-glow);
+        }
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: 2.2rem;
+            color: var(--gold-light);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+        .stat-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+        }
+
+        /* ============ FINANCE SECTION ============ */
+        .finance-section {
+            background: var(--bg-secondary);
+            position: relative;
+        }
+        .finance-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+        .finance-calculator {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+        }
+        .finance-calculator h4 {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--gold-light);
+        }
+        .finance-slider-group {
+            margin-bottom: 18px;
+        }
+        .finance-slider-group label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+        }
+        .finance-slider-group label .value {
+            color: var(--gold-light);
+            font-weight: 700;
+        }
+        .finance-slider {
+            width: 100%;
+            -webkit-appearance: none;
+            height: 6px;
+            background: var(--bg-elevated);
+            border-radius: 3px;
+            outline: none;
+            transition: var(--transition);
+        }
+        .finance-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold-dark));
+            cursor: pointer;
+            box-shadow: 0 2px 10px var(--gold-glow);
+            transition: var(--transition);
+        }
+        .finance-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
+        }
+        .finance-result {
+            background: var(--bg-elevated);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .finance-result .monthly {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            color: var(--gold-light);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+        .finance-result .per-month {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .finance-result .total {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 8px;
+        }
+
+        .finance-example {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+        }
+        .finance-example h4 {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+            color: var(--gold-light);
+        }
+        .finance-example .example-box {
+            background: var(--bg-elevated);
+            border-left: 3px solid var(--gold);
+            border-radius: var(--radius-sm);
+            padding: 20px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+        .finance-example .example-box strong {
+            color: var(--text-primary);
+        }
+        .finance-example .legal {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* ============ BRANCHES SECTION ============ */
+        .branches-section {
+            background: var(--bg-primary);
+            position: relative;
+        }
+        .branches-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+        }
+        .branch-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        .branch-card:hover {
+            border-color: rgba(201, 162, 39, 0.35);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-card);
+        }
+        .branch-card .branch-icon {
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+        }
+        .branch-card h5 {
+            font-family: var(--font-heading);
+            font-size: 1.05rem;
+            margin-bottom: 6px;
+        }
+        .branch-card p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* ============ FOOTER ============ */
+        .footer {
+            background: var(--bg-primary);
+            border-top: 1px solid var(--border);
+            padding: 60px 0 0;
+            position: relative;
+        }
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(201, 162, 39, 0.4), transparent);
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 32px;
+            padding-bottom: 40px;
+        }
+        .footer-brand .logo {
+            margin-bottom: 16px;
+        }
+        .footer-brand p {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            max-width: 280px;
+            margin-bottom: 16px;
+        }
+        .footer-social {
+            display: flex;
+            gap: 10px;
+        }
+        .footer-social a {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        .footer-social a:hover {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--bg-primary);
+            box-shadow: 0 4px 15px var(--gold-glow);
+        }
+        .footer-col h6 {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 16px;
+        }
+        .footer-col a {
+            display: block;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            padding: 5px 0;
+            transition: var(--transition);
+        }
+        .footer-col a:hover {
+            color: var(--gold-light);
+            padding-left: 6px;
+        }
+        .footer-bottom {
+            border-top: 1px solid var(--border);
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+        .footer-bottom a {
+            color: var(--text-muted);
+        }
+        .footer-bottom a:hover {
+            color: var(--gold);
+        }
+
+        /* ============ BACK TO TOP ============ */
+        .back-to-top {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold-dark));
+            color: var(--bg-primary);
+            border: none;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px var(--gold-glow);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: var(--transition);
+            z-index: 8000;
+            cursor: pointer;
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(201, 162, 39, 0.5);
+        }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 1024px) {
+            .nav {
+                display: none;
+            }
+            .header-actions .phone-link {
+                display: none;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .mobile-menu {
+                display: block;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .about-layout,
+            .finance-layout {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            .about-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: clamp(2.2rem, 8vw, 3.5rem);
+            }
+            .search-row {
+                grid-template-columns: 1fr 1fr;
+            }
+            .car-grid {
+                grid-template-columns: 1fr;
+            }
+            .deal-card {
+                flex: 0 0 280px;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .about-stats {
+                grid-template-columns: 1fr 1fr;
+            }
+            .section {
+                padding: 50px 0;
+            }
+            .header-inner {
+                height: 64px;
+            }
+            .mobile-menu {
+                top: 64px;
+            }
+            .logo {
+                font-size: 1.2rem;
+            }
+            .logo-icon {
+                width: 34px;
+                height: 34px;
+                font-size: 1rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .search-row {
+                grid-template-columns: 1fr;
+            }
+            .hero-ctas {
+                flex-direction: column;
+                align-items: center;
+            }
+            .hero-floating-car {
+                font-size: 5rem;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SCROLL PROGRESS -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- ============ HEADER ============ -->
+    <header class="header" id="header">
+        <div class="header-inner">
+            <a href="#" class="logo" aria-label="King Bright Home">
+                <div class="logo-icon">KB</div>
+                <div class="logo-text">
+                    <span class="king">KING</span> <span class="bright">BRIGHT</span>
+                    <span class="logo-sub">Car Dealership</span>
+                </div>
+            </a>
+            <nav class="nav" aria-label="Main navigation">
+                <a href="#cars" class="nav-link active">Cars</a>
+                <a href="#sell" class="nav-link">Sell My Car</a>
+                <a href="#vans" class="nav-link">Vans</a>
+                <a href="#branches" class="nav-link">Branches</a>
+                <a href="#rental" class="nav-link">Rental</a>
+                <a href="#servicing" class="nav-link">Servicing</a>
+                <div class="nav-link dropdown-toggle" id="moreDropdownToggle" style="cursor:pointer;" aria-haspopup="true">
+                    More ▾
+                    <div class="dropdown-menu" id="moreDropdown" role="menu">
+                        <a href="#about" role="menuitem">About Us</a>
+                        <a href="#finance" role="menuitem">Finance</a>
+                        <a href="#whats-new" role="menuitem">What's New</a>
+                        <a href="#deal-drop" role="menuitem">Deal Drop</a>
+                        <a href="#contact" role="menuitem">Contact</a>
+                    </div>
+                </div>
+            </nav>
+            <div class="header-actions">
+                <a href="tel:+442071234567" class="phone-link">
+                    <span class="icon">📞</span> 020 7123 4567
+                </a>
+                <a href="#" class="btn btn-primary btn-sm">Book Test Drive</a>
+                <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#cars">Cars</a>
+        <a href="#sell">Sell My Car</a>
+        <a href="#vans">Vans</a>
+        <a href="#branches">Branches</a>
+        <a href="#rental">Rental</a>
+        <a href="#servicing">Servicing</a>
+        <a href="#about">About Us</a>
+        <a href="#finance">Finance</a>
+        <a href="#whats-new">What's New</a>
+        <a href="#deal-drop">Deal Drop</a>
+        <a href="#contact">Contact</a>
+        <a href="tel:+233244635223" style="color:var(--gold);font-weight:600;">📞024 463 5223</a>
+    </div>
+
+    <!-- ============ HERO SECTION ============ -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="hero-glow"></div>
+        <div class="hero-floating-car">🚗</div>
+        <div class="hero-content container">
+            <div class="hero-badge">
+                <span class="dot"></span> Upgrade Event - Limited Time
+            </div>
+            <h1 class="hero-title">
+                One Year <span class="highlight">Free Servicing</span><br>On Every Purchase
+            </h1>
+            <p class="hero-subtitle">
+                Experience the <strong>King Bright</strong> difference — premium vehicles, unbeatable value, and a full year of complimentary servicing on every car bought this month.
+            </p>
+
+            <!-- SEARCH -->
+            <div class="hero-search">
+                <div class="search-box">
+                    <form id="searchForm" onsubmit="return false;">
+                        <div class="search-row">
+                            <div class="search-field">
+                                <label for="searchMake">Make</label>
+                                <select id="searchMake">
+                                    <option value="">All Makes</option>
+                                    <option value="BMW">BMW</option>
+                                    <option value="Audi">Audi</option>
+                                    <option value="Mercedes">Mercedes</option>
+                                    <option value="Range Rover">Range Rover</option>
+                                    <option value="Porsche">Porsche</option>
+                                    <option value="Tesla">Tesla</option>
+                                    <option value="VW">VW</option>
+                                    <option value="Ford">Ford</option>
+                                    <option value="Lexus">Lexus</option>
+                                    <option value="MINI">MINI</option>
+                                </select>
+                            </div>
+                            <div class="search-field">
+                                <label for="searchModel">Model</label>
+                                <select id="searchModel">
+                                    <option value="">All Models</option>
+                                    <option value="3 Series">3 Series</option>
+                                    <option value="A4">A4</option>
+                                    <option value="C-Class">C-Class</option>
+                                    <option value="Evoque">Evoque</option>
+                                    <option value="911">911</option>
+                                    <option value="Model 3">Model 3</option>
+                                    <option value="Golf R">Golf R</option>
+                                    <option value="Focus ST">Focus ST</option>
+                                    <option value="RX 450h">RX 450h</option>
+                                    <option value="Cooper S">Cooper S</option>
+                                </select>
+                            </div>
+                            <div class="search-field">
+                                <label for="searchBudget">Max Budget</label>
+                                <select id="searchBudget">
+                                    <option value="">Any Budget</option>
+                                    <option value="25000">£25,000</option>
+                                    <option value="35000">£35,000</option>
+                                    <option value="50000">£50,000</option>
+                                    <option value="75000">£75,000</option>
+                                    <option value="100000">£100,000+</option>
+                                </select>
+                            </div>
+                            <div class="search-field">
+                                <label for="searchBody">Body Type</label>
+                                <select id="searchBody">
+                                    <option value="">All Types</option>
+                                    <option value="Saloon">Saloon</option>
+                                    <option value="SUV">SUV</option>
+                                    <option value="Sports">Sports</option>
+                                    <option value="Hatchback">Hatchback</option>
+                                    <option value="Electric">Electric</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="search-submit" id="searchSubmit">
+                            🔍 Search Inventory
+                        </button>
+                    </form>
+                    <div class="search-count">
+                        <span class="live-dot"></span>
+                        <strong id="carCount">26,653</strong> cars available now
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-ctas">
+                <a href="#whats-new" class="btn btn-primary btn-lg">Browse All Cars</a>
+                <a href="#sell" class="btn btn-outline btn-lg">Sell My Car</a>
+            </div>
+
+            <div class="hero-trustpilot">
+                <div class="trustpilot-badge">
+                    <span class="trustpilot-stars">★★★★<span class="star-empty">☆</span></span>
+                    <span class="trustpilot-text"><strong>4.0</strong> on Trustpilot · <strong>3,842</strong> reviews</span>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse"></div>
+            Scroll Down
+        </div>
+    </section>
+
+    <!-- ============ DEAL DROP / SPECIAL COLLECTIONS ============ -->
+    <section class="section deal-section" id="deal-drop">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">🔥 Limited Time Only</span>
+                <h2 class="section-title">Deal Drop Collection</h2>
+                <p class="section-subtitle">Exclusive savings on premium vehicles — these offers won't last long. Grab yours before they're gone.</p>
+            </div>
+            <div class="deal-scroll-container reveal reveal-delay-1">
+                <div class="deal-scroll" id="dealScroll">
+                    <!-- Deal Card 1 -->
+                    <div class="deal-card">
+                        <div class="deal-card-image">
+                            <span class="deal-badge gold">Save £5,005</span>
+                            <img src="BMWx5.jpg" alt="BMWx5 xDrive30d">
+                        </div>
+                        <div class="deal-card-body">
+                            <h3 class="deal-card-title">BMW X5 xDrive30d</h3>
+                            <div class="deal-card-price">
+                                <span class="price-now">£39,995</span>
+                                <span class="price-was">£45,000</span>
+                            </div>
+                            <div class="deal-card-specs">
+                                <span>📅 2023</span>
+                                <span>🛣️ 8,500 mi</span>
+                                <span>⛽ Diesel</span>
+                                <span>⚙️ Auto</span>
+                            </div>
+                            <div class="deal-countdown" data-deadline="2025-12-31T23:59:59">
+                                <div class="countdown-item"><span class="num" data-unit="days">0</span><span class="label">Days</span></div>
+                                <div class="countdown-item"><span class="num" data-unit="hours">0</span><span class="label">Hrs</span></div>
+                                <div class="countdown-item"><span class="num" data-unit="mins">0</span><span class="label">Min</span></div>
+                                <div class="countdown-item"><span class="num" data-unit="secs">0</span><span class="label">Sec</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Deal Card 2 -->
+                    <div class="deal-card">
+                        <div class="deal-card-image">
+                            <span class="deal-badge">Save £4,550</span>
+                            <img src="AudiQ7.jpg" alt="Audi Q7 S Line">
+                        </div>
+                        <div class="deal-card-body">
+                            <h3 class="deal-card-title">Audi Q7 S Line</h3>
+                            <div class="deal-card-price">
+                                <span class="price-now">£33,450</span>
+                                <span class="price-was">£38,000</span>
+                            </div>
+                            <div class="deal-card-specs">
+                                <span>📅 2023</span>
+                                <span>🛣️ 12,200 mi</span>
+                                <span>⛽ Diesel</span>
+                                <span>⚙️ Auto</span>
+                            </div>
+                            <div class="deal-countdown" data-deadline="2025-11-30T23:59:59">
+                                <div class="countdown-item"><span class="num" data-unit="days">0</span><span class="label">Days</span></div>
+                                <div class="countdown-item"><span class="num" data-unit="hours">0</span><span class="label">Hrs</span></div>
+                                <div class="countdown-item"><span class="num" data-unit="mins">0</span><span class="label">Min</span></div>
+                                <div class="countdown-item"><span class="num" data-unit="secs">0</span><span class="label">Sec</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Deal Card 3 -->
+                    <div class="deal-card">
+                        <div class="deal-card-image">
+                            <span class="deal-badge gold">Save £5,250</span>
+                            <img src="MercedesGLE.jpg" alt="Mercedes GLE 350d">
+                        </div>
+                        <div class="deal-card-body">
+                            <h3 class="deal-card-title">Mercedes GLE 350d</h3>
+                            <div class="deal-card-price">
+                                <span class="price-now">£46,750</span>
+                                <span class="price-was">£52,000</span>
+                            </div>
+                            <div class="deal-card-specs">
+                                <span>📅 2023</span>
+                                <span>🛣️ 9,800 mi</span>
+                                <span>⛽ Diesel</span>
+                                <span>⚙️ Auto</span>
+                            </div>
+                            <div class="deal-countdown" data-deadline="2025-12-15T23:59:59">
+                                <div class="countdown-item"><span class="num" data-unit="days">0</span><span class="label">Days</span></div>
+                                <div class="countdown-item"><span class="num" data-unit="hours">0</span><span class="label">Hrs</span></div>
+                                <div class="countdown-item"><span class="num" data-unit="mins">0</span><span class="label">Min</span></div>
+                                <div class="countdown-item"><span class="num" data-unit="secs">0</span><span class="label">Sec</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Deal Card 4 -->
+                    <div class="deal-card">
+                        <div class="deal-card-image">
+                            <span class="deal-badge">Save £6,005</span>
+                            <img src="RangeRover.jpg" alt="Range Rover Sport HSE">
+                        </div>
+                        <div class="deal-card-body">
+                            <h3 class="deal-card-title">Range Rover Sport HSE</h3>
+                            <div class="deal-card-price">
+                                <span class="price-now">£58,995</span>
+                                <span class="price-was">£65,000</span>
+                            </div>
+                            <div class="deal-card-specs">
+                                <span>📅 2023</span>
+                                <span>🛣️ 7,300 mi</span>
+                                <span>⛽ Petrol</span>
+                                <span>⚙️ Auto</span>
+                            </div>
+                            <div class="deal-countdown" data-deadline="2025-12-20T23:59:59">
+                                <div class="countdown-item"><span class="num" data-unit="days">0</span><span class="label">Days</span></div>
+                                <div class="countdown-item"><span class="num" data-unit="hours">0</span><span class="label">Hrs</span></div>
+                                <div class="countdown-item"><span class="num" data-unit="mins">0</span><span class="label">Min</span></div>
+                                <div class="countdown-item"><span class="num" data-unit="secs">0</span><span class="label">Sec</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Deal Card 5 -->
+                    <div class="deal-card">
+                        <div class="deal-card-image">
+                            <span class="deal-badge gold">Save £3,250</span>
+                            <img src="MiniCooper.jpg" alt="Mini Cooper S Sport">
+                        </div>
+                        <div class="deal-card-body">
+                            <h3 class="deal-card-title">MINI Cooper S Sport</h3>
+                            <div class="deal-card-price">
+                                <span class="price-now">£19,500</span>
+                                <span class="price-was">£22,750</span>
+                            </div>
+                            <div class="deal-card-specs">
+                                <span>📅 2024</span>
+                                <span>🛣️ 3,200 mi</span>
+                                <span>⛽ Petrol</span>
+                                <span>⚙️ Manual</span>
+                            </div>
+                            <div class="deal-countdown" data-deadline="2025-11-25T23:59:59">
+                                <div class="countdown-item"><span class="num" data-unit="days">0</span><span class="label">Days</span></div>
+                                <div class="countdown-item"><span class="num" data-unit="hours">0</span><span class="label">Hrs</span></div>
+                                <div class="countdown-item"><span class="num" data-unit="mins">0</span><span class="label">Min</span></div>
+                                <div class="countdown-item"><span class="num" data-unit="secs">0</span><span class="label">Sec</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="deal-nav reveal reveal-delay-2">
+                <button class="deal-nav-btn" id="dealPrev" aria-label="Previous deals">←</button>
+                <button class="deal-nav-btn" id="dealNext" aria-label="Next deals">→</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ WHAT'S NEW / CAR LISTINGS ============ -->
+    <section class="section" id="whats-new">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Fresh Arrivals</span>
+                <h2 class="section-title">What's New</h2>
+                <p class="section-subtitle">The latest premium vehicles added to our inventory — hand-picked and ready for their next owner.</p>
+            </div>
+            <div class="car-grid" id="carGrid">
+                <!-- Cars will be dynamically populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ ABOUT SECTION ============ -->
+    <section class="section about-section" id="about">
+        <div class="container">
+            <div class="about-layout">
+                <div class="about-image reveal">
+                    <div class="glow-orb"></div>
+                    <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=600&q=80" alt="Luxury car showroom" loading="lazy">
+                </div>
+                <div class="about-text reveal reveal-delay-1">
+                    <span class="section-tag">Since 2005</span>
+                    <h3>Driving Excellence with <span class="gold">King Bright</span></h3>
+                    <p>For nearly two decades, King Bright Car Dealership has been synonymous with trust, quality, and exceptional service. From our humble beginnings with a single showroom, we've grown into one of the region's most respected premium car dealers — with over 26,000 vehicles sold and a reputation built on integrity and customer satisfaction.</p>
+                    <p>Our team of expert specialists hand-picks every vehicle, ensuring it meets our rigorous 200-point inspection standard. Whether you're looking for a luxury saloon, a family SUV, or a high-performance sports car, we'll help you find the perfect match — with flexible finance options and our signature one-year free servicing guarantee.</p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="26653">0</div>
+                            <div class="stat-label">Cars Sold</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="19">0</div>
+                            <div class="stat-label">Years Running</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="12">0</div>
+                            <div class="stat-label">Branches</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="4.9">0</div>
+                            <div class="stat-label">Avg. Rating</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ BRANCHES SECTION ============ -->
+    <section class="section branches-section" id="branches">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Nationwide Presence</span>
+                <h2 class="section-title">Our Branches</h2>
+                <p class="section-subtitle">Visit any of our 12 locations across the country — we'd love to welcome you in person.</p>
+            </div>
+            <div class="branches-grid">
+                <div class="branch-card reveal">
+                    <div class="branch-icon">🏛️</div>
+                    <h5>London Flagship</h5>
+                    <p>150 Mayfair Road, London W1J 8AJ<br>Mon–Sat: 9am–7pm · Sun: 10am–5pm</p>
+                </div>
+                <div class="branch-card reveal reveal-delay-1">
+                    <div class="branch-icon">🏙️</div>
+                    <h5>Manchester</h5>
+                    <p>220 Deansgate, Manchester M3 4LY<br>Mon–Sat: 9am–6pm · Sun: 10am–4pm</p>
+                </div>
+                <div class="branch-card reveal reveal-delay-2">
+                    <div class="branch-icon">🌉</div>
+                    <h5>Birmingham</h5>
+                    <p>45 Colmore Row, Birmingham B3 2AS<br>Mon–Sat: 9am–6:30pm · Sun: 10am–4pm</p>
+                </div>
+                <div class="branch-card reveal reveal-delay-3">
+                    <div class="branch-icon">🏰</div>
+                    <h5>Edinburgh</h5>
+                    <p>18 George Street, Edinburgh EH2 2PF<br>Mon–Sat: 9am–6pm · Sun: 10am–4pm</p>
+                </div>
+                <div class="branch-card reveal reveal-delay-4">
+                    <div class="branch-icon">🌊</div>
+                    <h5>Bristol</h5>
+                    <p>32 Harbourside, Bristol BS1 4SB<br>Mon–Sat: 9am–6pm · Sun: 10am–4pm</p>
+                </div>
+                <div class="branch-card reveal reveal-delay-4">
+                    <div class="branch-icon">🎓</div>
+                    <h5>Leeds</h5>
+                    <p>8 Park Row, Leeds LS1 5HD<br>Mon–Sat: 9am–6pm · Sun: 10am–4pm</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SERVICING SECTION ============ -->
+    <section class="section section-alt" id="servicing">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Expert Care</span>
+                <h2 class="section-title">Premium Servicing</h2>
+                <p class="section-subtitle">Keep your vehicle in peak condition with our certified technicians and genuine parts — now with one year free servicing on every purchase.</p>
+            </div>
+            <div class="branches-grid">
+                <div class="branch-card reveal">
+                    <div class="branch-icon">🔧</div>
+                    <h5>Full Service</h5>
+                    <p>Comprehensive 200-point inspection, oil and filter change, brake check, and full diagnostic report.</p>
+                </div>
+                <div class="branch-card reveal reveal-delay-1">
+                    <div class="branch-icon">🛡️</div>
+                    <h5>Warranty Protection</h5>
+                    <p>Extended warranty options available, covering all major components for complete peace of mind.</p>
+                </div>
+                <div class="branch-card reveal reveal-delay-2">
+                    <div class="branch-icon">⚡</div>
+                    <h5>EV Servicing</h5>
+                    <p>Specialised electric and hybrid vehicle servicing with certified EV technicians and battery diagnostics.</p>
+                </div>
+                <div class="branch-card reveal reveal-delay-3">
+                    <div class="branch-icon">🚗</div>
+                    <h5>MOT & Tyres</h5>
+                    <p>Fast MOT testing and premium tyre fitting available at all locations with online booking.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FINANCE SECTION ============ -->
+    <section class="section finance-section" id="finance">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Flexible Finance</span>
+                <h2 class="section-title">Drive Now, Pay Later</h2>
+                <p class="section-subtitle">Tailored finance packages to suit every budget. Use our calculator to estimate your monthly payments.</p>
+            </div>
+            <div class="finance-layout">
+                <div class="finance-calculator reveal">
+                    <h4>💰 Finance Calculator</h4>
+                    <div class="finance-slider-group">
+                        <label>Car Price <span class="value" id="priceVal">£35,000</span></label>
+                        <input type="range" class="finance-slider" id="priceSlider" min="10000" max="150000" step="500" value="35000">
+                    </div>
+                    <div class="finance-slider-group">
+                        <label>Deposit <span class="value" id="depositVal">£3,500</span></label>
+                        <input type="range" class="finance-slider" id="depositSlider" min="0" max="50000" step="500" value="3500">
+                    </div>
+                    <div class="finance-slider-group">
+                        <label>Term (Months) <span class="value" id="termVal">48</span></label>
+                        <input type="range" class="finance-slider" id="termSlider" min="12" max="60" step="12" value="48">
+                    </div>
+                    <div class="finance-result">
+                        <div class="monthly" id="monthlyPayment">£745.32</div>
+                        <div class="per-month">per month</div>
+                        <div class="total" id="totalCost">Total cost: £39,275.36</div>
+                    </div>
+                </div>
+                <div class="finance-example reveal reveal-delay-1">
+                    <h4>📋 Representative Example</h4>
+                    <div class="example-box">
+                        <strong>Representative Example:</strong><br>
+                        Cash price <strong>£35,000.00</strong> · Deposit <strong>£3,500.00</strong> · Borrowing <strong>£31,500.00</strong> over <strong>48 months</strong> at <strong>6.9% APR</strong> representative.<br><br>
+                        Monthly payment: <strong>£745.32</strong><br>
+                        Total amount payable: <strong>£39,275.36</strong><br>
+                        Representative APR: <strong>6.9%</strong><br>
+                        Fixed rate of interest: <strong>3.57% p.a.</strong>
+                    </div>
+                    <p class="legal">
+                        *Finance subject to status. Terms and conditions apply. King Bright Car Dealership is authorised and regulated by the Financial Conduct Authority. Guarantees may be required. You must be 18 or over and a UK resident. The representative example shown is for illustrative purposes only — actual rates may vary based on your individual circumstances and credit score.
+                    </p>
+                    <a href="#contact" class="btn btn-primary" style="margin-top:16px;">Apply for Finance →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SELL MY CAR / RENTAL SECTIONS (brief) ============ -->
+    <section class="section" id="sell">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Quick & Easy</span>
+                <h2 class="section-title">Sell My Car</h2>
+                <p class="section-subtitle">Get a free valuation in minutes. We'll buy your car even if you don't buy from us.</p>
+            </div>
+            <div class="branches-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px,1fr));">
+                <div class="branch-card reveal" style="text-align:center;padding:40px 24px;">
+                    <div class="branch-icon" style="font-size:3rem;">💎</div>
+                    <h5>Instant Online Valuation</h5>
+                    <p style="color:var(--text-muted);">Enter your registration and get a guaranteed valuation in under 2 minutes.</p>
+                    <a href="#" class="btn btn-primary btn-sm" style="margin-top:12px;">Get Valuation</a>
+                </div>
+                <div class="branch-card reveal reveal-delay-1" style="text-align:center;padding:40px 24px;">
+                    <div class="branch-icon" style="font-size:3rem;">🤝</div>
+                    <h5>We Buy Any Car</h5>
+                    <p style="color:var(--text-muted);">No purchase necessary — we'll buy your car outright at a fair market price.</p>
+                    <a href="#" class="btn btn-outline btn-sm" style="margin-top:12px;">Learn More</a>
+                </div>
+                <div class="branch-card reveal reveal-delay-2" style="text-align:center;padding:40px 24px;">
+                    <div class="branch-icon" style="font-size:3rem;">🔁</div>
+                    <h5>Part Exchange</h5>
+                    <p style="color:var(--text-muted);">Trade in your current car and drive away in your new one — all in a single visit.</p>
+                    <a href="#" class="btn btn-outline btn-sm" style="margin-top:12px;">Start Exchange</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <div class="logo-icon">KB</div>
+                        <div class="logo-text">
+                            <span class="king">KING</span> <span class="bright">BRIGHT</span>
+                            <span class="logo-sub">Car Dealership</span>
+                        </div>
+                    </a>
+                    <p>Premium vehicles, exceptional service, and a commitment to excellence since 2005. Your trusted partner for buying, selling, and servicing premium cars across the UK.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook">📘</a>
+                        <a href="#" aria-label="Instagram">📸</a>
+                        <a href="#" aria-label="Twitter">🐦</a>
+                        <a href="#" aria-label="YouTube">🎬</a>
+                        <a href="#" aria-label="LinkedIn">💼</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h6>Help</h6>
+                    <a href="#">Contact Us</a>
+                    <a href="#">FAQs</a>
+                    <a href="#">Book a Test Drive</a>
+                    <a href="#">Finance Application</a>
+                    <a href="#">Servicing Enquiry</a>
+                    <a href="#">Complaints</a>
+                </div>
+                <div class="footer-col">
+                    <h6>About Us</h6>
+                    <a href="#">Our Story</a>
+                    <a href="#">Meet the Team</a>
+                    <a href="#">Careers</a>
+                    <a href="#">Press Centre</a>
+                    <a href="#">Blog</a>
+                </div>
+                <div class="footer-col">
+                    <h6>Legal</h6>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms & Conditions</a>
+                    <a href="#">Cookie Policy</a>
+                    <a href="#">Finance Disclosures</a>
+                    <a href="#">Modern Slavery Statement</a>
+                    <a href="#">Data Protection</a>
+                </div>
+                <div class="footer-col">
+                    <h6>Corporate</h6>
+                    <a href="#">Investor Relations</a>
+                    <a href="#">Group Companies</a>
+                    <a href="#">Fleet Services</a>
+                    <a href="#">Partnerships</a>
+                    <a href="#">Sustainability</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 King Bright Car Dealership Ltd. All rights reserved. Registered in England & Wales No. 04567890.</span>
+                <span>Authorised & Regulated by the FCA · VAT No. GB 123 4567 89</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BACK TO TOP -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+    <script>
+        // ============ SCROLL PROGRESS ============
+        const scrollProgress = document.getElementById('scrollProgress');
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (scrollTop / scrollHeight) * 100;
+            scrollProgress.style.width = progress + '%';
+            // Header scrolled state
+            const header = document.getElementById('header');
+            if (scrollTop > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            // Back to top visibility
+            const backToTop = document.getElementById('backToTop');
+            if (scrollTop > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        // ============ BACK TO TOP ============
+        document.getElementById('backToTop').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ============ MOBILE MENU ============
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('open');
+        });
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('open');
+            });
+        });
+
+        // ============ MORE DROPDOWN ============
+        const moreToggle = document.getElementById('moreDropdownToggle');
+        const moreDropdown = document.getElementById('moreDropdown');
+        moreToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            moreDropdown.classList.toggle('show');
+        });
+        document.addEventListener('click', () => {
+            moreDropdown.classList.remove('show');
+        });
+        moreDropdown.addEventListener('click', (e) => {
+            e.stopPropagation();
+            moreDropdown.classList.remove('show');
+        });
+
+        // ============ REVEAL ON SCROLL ============
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // ============ STAT COUNTER ANIMATION ============
+        const statNumbers = document.querySelectorAll('.stat-number');
+        const statObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const target = parseFloat(el.dataset.target);
+                    const duration = 1800;
+                    const startTime = performance.now();
+                    const isDecimal = target % 1 !== 0;
+
+                    function animateStat(currentTime) {
+                        const elapsed = currentTime - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+                        const easeOut = 1 - Math.pow(1 - progress, 3);
+                        const currentValue = target * easeOut;
+                        el.textContent = isDecimal ? currentValue.toFixed(1) : Math.round(
+                            currentValue).toLocaleString();
+                        if (progress < 1) {
+                            requestAnimationFrame(animateStat);
+                        }
+                    }
+                    requestAnimationFrame(animateStat);
+                    statObserver.unobserve(el);
+                }
+            });
+        }, { threshold: 0.5 });
+        statNumbers.forEach(el => statObserver.observe(el));
+
+        // ============ COUNTDOWN TIMERS ============
+        function updateCountdowns() {
+            document.querySelectorAll('.deal-countdown').forEach(countdown => {
+                const deadline = new Date(countdown.dataset.deadline).getTime();
+                const now = new Date().getTime();
+                let diff = Math.max(0, deadline - now);
+
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                diff %= (1000 * 60 * 60 * 24);
+                const hours = Math.floor(diff / (1000 * 60 * 60));
+                diff %= (1000 * 60 * 60);
+                const mins = Math.floor(diff / (1000 * 60));
+                diff %= (1000 * 60);
+                const secs = Math.floor(diff / 1000);
+
+                const units = countdown.querySelectorAll('.num');
+                units[0].textContent = days;
+                units[1].textContent = hours.toString().padStart(2, '0');
+                units[2].textContent = mins.toString().padStart(2, '0');
+                units[3].textContent = secs.toString().padStart(2, '0');
+            });
+        }
+        updateCountdowns();
+        setInterval(updateCountdowns, 1000);
+
+        // ============ DEAL SCROLL NAVIGATION ============
+        const dealScroll = document.getElementById('dealScroll');
+        document.getElementById('dealPrev').addEventListener('click', () => {
+            dealScroll.scrollBy({ left: -340, behavior: 'smooth' });
+        });
+        document.getElementById('dealNext').addEventListener('click', () => {
+            dealScroll.scrollBy({ left: 340, behavior: 'smooth' });
+        });
+
+        // ============ CAR DATA (with real image URLs) ============
+        const cars = [
+            { make: 'BMW', model: '3 Series', name: 'BMW 3 Series M Sport', price: 32995, year: 2024,
+                mileage: '4,200 mi', fuel: 'Petrol', gearbox: 'Auto', body: 'Saloon',
+                image: 'BMW3.jpg',
+                tag: 'New Arrival' },
+            { make: 'Audi', model: 'A4', name: 'Audi A4 S Line', price: 28450, year: 2023, mileage: '11,800 mi',
+                fuel: 'Diesel', gearbox: 'Auto', body: 'Saloon',
+                image: 'AudiA4.jpg',
+                tag: 'Popular' },
+            { make: 'Mercedes', model: 'C-Class', name: 'Mercedes C-Class AMG Line', price: 35750, year: 2024,
+                mileage: '2,900 mi', fuel: 'Petrol', gearbox: 'Auto', body: 'Saloon',
+                image: 'MercedesC-Class.jpg',
+                tag: 'New Arrival' },
+            { make: 'Range Rover', model: 'Evoque', name: 'Range Rover Evoque', price: 42500, year: 2023,
+                mileage: '14,500 mi', fuel: 'Diesel', gearbox: 'Auto', body: 'SUV',
+                image: 'RangeRoverEvoque.jpg',
+                tag: 'Premium' },
+            { make: 'Porsche', model: '911', name: "Porsche 911", price: 89995, year: 2024,
+                mileage: '1,200 mi', fuel: 'Petrol', gearbox: 'Auto', body: 'Sports',
+                image: 'Porsche911.jpg',
+                tag: 'Exclusive' },
+            { make: 'Tesla', model: 'Model 3', name: 'Tesla Model 3 Long Range', price: 38990, year: 2024,
+                mileage: '5,600 mi', fuel: 'Electric', gearbox: 'Auto', body: 'Electric',
+                image: 'TeslaModel3.jpg',
+                tag: 'Electric' },
+            { make: 'VW', model: 'Golf R', name: 'VW Golf R 2.0 TSI', price: 35250, year: 2023,
+                mileage: '9,400 mi', fuel: 'Petrol', gearbox: 'Manual', body: 'Hatchback',
+                image: 'VWTSI.jpg',
+                tag: 'Hot Hatch' },
+            { make: 'Ford', model: 'Focus ST', name: 'Ford Focus ST', price: 26995, year: 2024,
+                mileage: '6,100 mi', fuel: 'Petrol', gearbox: 'Manual', body: 'Hatchback',
+                image: 'FordFocus.jpg',
+                tag: 'Sporty' },
+            { make: 'Lexus', model: 'RX 450h', name: 'Lexus RX 450h F Sport', price: 52000, year: 2023,
+                mileage: '8,300 mi', fuel: 'Hybrid', gearbox: 'Auto', body: 'SUV',
+                image: 'LexusRX.jpg',
+                tag: 'Hybrid' },
+            { make: 'MINI', model: 'Cooper S', name: 'MINI Cooper S Sport', price: 22750, year: 2024,
+                mileage: '3,200 mi', fuel: 'Petrol', gearbox: 'Manual', body: 'Hatchback',
+                image: 'MINISport.jpg',
+                tag: 'Fun Drive' },
+            { make: 'BMW', model: 'X5', name: 'BMW X5 xDrive30d', price: 39995, year: 2023, mileage: '8,500 mi',
+                fuel: 'Diesel', gearbox: 'Auto', body: 'SUV',
+                image: 'BMWxDrive.jpg',
+                tag: 'Deal Drop' },
+            { make: 'Audi', model: 'Q7', name: 'Audi Q7 S Line', price: 33450, year: 2023, mileage: '12,200 mi',
+                fuel: 'Diesel', gearbox: 'Auto', body: 'SUV',
+                image: 'AudiS.jpg',
+                tag: 'Deal Drop' },
+            { make: 'Mercedes', model: 'GLE', name: 'Mercedes GLE 350d', price: 46750, year: 2023,
+                mileage: '9,800 mi', fuel: 'Diesel', gearbox: 'Auto', body: 'SUV',
+                image: 'Mercedes350d.jpg',
+                tag: 'Deal Drop' },
+            { make: 'Range Rover', model: 'Sport', name: 'Range Rover Sport HSE', price: 58995, year: 2023,
+                mileage: '7,300 mi', fuel: 'Petrol', gearbox: 'Auto', body: 'SUV',
+                image: 'RangeRoverHSE.jpg',
+                tag: 'Deal Drop' },
+            { make: 'MINI', model: 'Cooper S', name: 'MINI Cooper S Sport', price: 19500, year: 2024,
+                mileage: '3,200 mi', fuel: 'Petrol', gearbox: 'Manual', body: 'Hatchback',
+                image: 'MINIS.jpg',
+                tag: 'Deal Drop' },
+        ];
+
+        // ============ RENDER CAR CARDS ============
+        const carGrid = document.getElementById('carGrid');
+
+        function renderCars(filteredCars) {
+            carGrid.innerHTML = '';
+            filteredCars.forEach(car => {
+                const card = document.createElement('div');
+                card.className = 'car-card reveal visible';
+                card.innerHTML = `
+                    <div class="car-card-image">
+                        <span class="car-tag">${car.tag || 'Available'}</span>
+                        <img src="${car.image}" alt="${car.name}" loading="lazy" onerror="this.onerror=null;this.src='https://via.placeholder.com/600x400?text=Car+Image+Coming+Soon';">
+                    </div>
+                    <div class="car-card-body">
+                        <h3 class="car-card-name">${car.name}</h3>
+                        <div class="car-card-specs">
+                            <span>📅 ${car.year}</span>
+                            <span>🛣️ ${car.mileage}</span>
+                            <span>⛽ ${car.fuel}</span>
+                            <span>⚙️ ${car.gearbox}</span>
+                        </div>
+                        <div class="car-card-bottom">
+                            <span class="car-card-price">£${car.price.toLocaleString()}</span>
+                            <button class="car-card-btn">View Details</button>
+                        </div>
+                    </div>
+                `;
+                carGrid.appendChild(card);
+            });
+            // If no results
+            if (filteredCars.length === 0) {
+                carGrid.innerHTML = `
+                    <div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--text-muted);">
+                        <span style="font-size:3rem;display:block;margin-bottom:16px;">🔍</span>
+                        <p style="font-size:1.1rem;">No vehicles match your search criteria.</p>
+                        <p style="font-size:0.9rem;">Try adjusting your filters to see more results.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Initial render with all cars
+        renderCars(cars);
+
+        // ============ SEARCH FUNCTIONALITY ============
+        function filterCars() {
+            const make = document.getElementById('searchMake').value;
+            const model = document.getElementById('searchModel').value;
+            const budget = document.getElementById('searchBudget').value;
+            const body = document.getElementById('searchBody').value;
+
+            let filtered = [...cars];
+
+            if (make) filtered = filtered.filter(c => c.make === make);
+            if (model) filtered = filtered.filter(c => c.model === model);
+            if (budget) filtered = filtered.filter(c => c.price <= parseInt(budget));
+            if (body) {
+                if (body === 'Electric') {
+                    filtered = filtered.filter(c => c.fuel === 'Electric');
+                } else if (body === 'Sports') {
+                    filtered = filtered.filter(c => c.body === 'Sports');
+                } else if (body === 'SUV') {
+                    filtered = filtered.filter(c => c.body === 'SUV');
+                } else if (body === 'Hatchback') {
+                    filtered = filtered.filter(c => c.body === 'Hatchback');
+                } else if (body === 'Saloon') {
+                    filtered = filtered.filter(c => c.body === 'Saloon');
+                }
+            }
+
+            return filtered;
+        }
+
+        document.getElementById('searchSubmit').addEventListener('click', () => {
+            const filtered = filterCars();
+            renderCars(filtered);
+            document.getElementById('whats-new').scrollIntoView({ behavior: 'smooth' });
+            updateCarCountDisplay(filtered.length);
+        });
+
+        // Also filter on select change
+        ['searchMake', 'searchModel', 'searchBudget', 'searchBody'].forEach(id => {
+            document.getElementById(id).addEventListener('change', () => {
+                const filtered = filterCars();
+                renderCars(filtered);
+                updateCarCountDisplay(filtered.length);
+            });
+        });
+
+        function updateCarCountDisplay(shownCount) {
+            const countEl = document.getElementById('carCount');
+            if (shownCount < 26653) {
+                countEl.textContent = shownCount;
+            } else {
+                countEl.textContent = '26,653';
+            }
+            // Animate a subtle pulse on the count
+            countEl.style.transition = 'transform 0.3s';
+            countEl.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                countEl.style.transform = 'scale(1)';
+            }, 300);
+        }
+
+        // ============ FINANCE CALCULATOR ============
+        const priceSlider = document.getElementById('priceSlider');
+        const depositSlider = document.getElementById('depositSlider');
+        const termSlider = document.getElementById('termSlider');
+        const priceVal = document.getElementById('priceVal');
+        const depositVal = document.getElementById('depositVal');
+        const termVal = document.getElementById('termVal');
+        const monthlyPayment = document.getElementById('monthlyPayment');
+        const totalCost = document.getElementById('totalCost');
+        const APR = 6.9;
+        const monthlyRate = APR / 100 / 12;
+
+        function updateFinance() {
+            const price = parseInt(priceSlider.value);
+            const deposit = parseInt(depositSlider.value);
+            const term = parseInt(termSlider.value);
+            const loanAmount = price - deposit;
+            const monthlyFactor = monthlyRate * Math.pow(1 + monthlyRate, term) / (Math.pow(1 + monthlyRate,
+            term) - 1);
+            const payment = loanAmount * monthlyFactor;
+            const total = payment * term + deposit;
+
+            priceVal.textContent = '£' + price.toLocaleString();
+            depositVal.textContent = '£' + deposit.toLocaleString();
+            termVal.textContent = term;
+            monthlyPayment.textContent = '£' + payment.toFixed(2);
+            totalCost.textContent = 'Total cost: £' + total.toFixed(2);
+
+            // Ensure deposit doesn't exceed price
+            if (deposit > price * 0.8) {
+                depositSlider.value = Math.floor(price * 0.8 / 500) * 500;
+                updateFinance();
+            }
+        }
+
+        priceSlider.addEventListener('input', updateFinance);
+        depositSlider.addEventListener('input', updateFinance);
+        termSlider.addEventListener('input', updateFinance);
+        updateFinance();
+
+        // ============ KEYBOARD ACCESSIBILITY ============
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                moreDropdown.classList.remove('show');
+                mobileMenu.classList.remove('open');
+                hamburger.classList.remove('active');
+            }
+        });
+
+        // ============ SMOOTH ANCHOR SCROLL ============
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const target = document.querySelector(targetId);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        console.log('%c👑 KING BRIGHT CAR DEALERSHIP', 'font-size:24px;font-weight:bold;color:#c9a227;');
+        console.log('%cPremium vehicles · Exceptional service · Since 2005', 'font-size:12px;color:#b8b8b8;');
+    </script>
+</body>
+</html>
